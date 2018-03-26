@@ -16,7 +16,6 @@ if __name__ == "__main__":
         path = sys.argv[1]
     else:
         path = os.getcwd()
-    print(os.getcwd())
     print(datetime.date.strftime(datetime.date.today(), "%Y%m%d"))
     # res = findFilesInDir('\\\\10.20.0.241\\belatmit\\marshrut_fact\\', 'xls')
     res = findFilesInDir(path, 'xls')
