@@ -14,7 +14,13 @@ print(datetime.date.strftime(datetime.date.today(), "%Y%m%d"))
 res = findFilesInDir('d:\\1\\', 'xls')
 print(res)
 
-all = xlrd.open_workbook('d:\\1\\all.xls', on_demand=True, encoding_override="cp1251")
+try:
+    all = xlrd.open_workbook('d:\\1\\all.xls', on_demand=True, encoding_override="cp1251")
+except FileNotFoundError:
+    newExcelFile = xlwt.Workbook('cp1251')
+    sheet = newExcelFile.add_sheet('1')
+    newExcelFile.save('d:\\1\\all.xls')
+    all = xlrd.open_workbook('d:\\1\\all.xls', on_demand=True, encoding_override="cp1251")
 allSheet = all.sheet_by_index(0)
 allKolRows = allSheet.nrows
 print(allKolRows)
